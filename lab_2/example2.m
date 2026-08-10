@@ -1,0 +1,16 @@
+clc; close all; 
+a = [1, -0.95, 0.9025];           
+b = [1, 1, 1]/3;                  
+yi = [-2, -3];  
+xi = [1, 1];   
+ic = filtic(b, a, yi, xi);
+n = 0:100;
+u = n >= 0;
+x = 3 * cos(n * pi / 3) .* u;
+y = filter(b, a, x, ic);
+subplot(2,1,1); plot(n, x, 'LineWidth',1.2); 
+title('Input Signal');
+ylabel('amplitude'); xlabel('n--->'); 
+subplot(2,1,2); plot(n, y, 'LineWidth', 1.2); 
+title('Output Signal');
+ylabel('amplitude'); xlabel('n--->');
