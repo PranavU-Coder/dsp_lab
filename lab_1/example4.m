@@ -1,0 +1,12 @@
+clc; close all;
+x = [3,11,7,0,-1,4,2];
+nx = -3:3;
+ny = nx + 2;
+w = randn(1, length(x));
+y = x + w;
+ns = nx(1) + ny(1);
+ne = nx(length(x)) + ny(length(y));
+nz = ns:ne;
+z = xcorr(x,y);
+stem(nz,z);
+title('cross correlation');
