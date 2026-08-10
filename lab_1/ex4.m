@@ -1,0 +1,18 @@
+clc; close all;
+f0 = 80;               
+fs = 1000;             
+t = 0:1/fs:0.25;      
+snrdb = 10;          
+xpure = sin(2*pi*f0*t);
+xnoisy = awgn(xpure, snrdb, 'measured');
+[r_xx, lags] = xcorr(xnoisy, 'unbiased');
+tau = lags / fs;     
+subplot(3,1,1); plot(t, xpure, 'b', 'LineWidth', 1.2);
+title('Pure 80 Hz Sine Wave');
+ylabel('amplitude'); xlabel('t (s)--->');
+subplot(3,1,2); plot(t, xnoisy, 'r', 'LineWidth', 1);
+title(['Noisy 80Hz Sine Wave']);
+ylabel('amplitude'); xlabel('t (s)--->');
+subplot(3,1,3); plot(tau, r_xx, 'k', 'LineWidth', 1.2);
+title('Autocorrelation of Noisy Signal r_{xx}(\tau)');
+ylabel('r_{xx}'); xlabel('time delay \tau (s)--->');
