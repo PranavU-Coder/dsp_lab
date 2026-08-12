@@ -1,0 +1,26 @@
+clc; close all; 
+a = [1, 0, -0.81];         
+b = [1, -1, 0];            
+n = 0:30;                  
+u = @(k) (k >= 0);        
+x = (0.7.^n) .* u(n + 1);
+x_m1 = 1 / 0.7; 
+x_m2 = 0;
+xi = [x_m1, x_m2];        
+y_m1 = 2;
+y_m2 = 2;                  
+yi = [y_m1, y_m2];         
+ic = filtic(b, a, yi, xi);
+y = filter(b, a, x, ic);
+disp(table(n(1:10)', x(1:10)', y(1:10)', ...
+    'VariableNames', {'n', 'x_n', 'y_n'}));
+subplot(2,1,1);
+stem(n, x, 'filled', 'b');
+title('Input Signal: x[n] = 0.7^n u[n+1]');
+ylabel('amplitude'); xlabel('n--->');
+grid on;
+subplot(2,1,2);
+stem(n, y, 'filled', 'r');
+title('Total Response: y[n]');
+ylabel('amplitude'); xlabel('n--->');
+grid on;
