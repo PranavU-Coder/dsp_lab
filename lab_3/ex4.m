@@ -1,0 +1,13 @@
+clc; close all; 
+Fs = 1000;                    
+t = 0 : 1/Fs : (1 - 1/Fs);      
+x = sin(2*pi*30*t) + sin(2*pi*80*t) + sin(2*pi*120*t);
+N = length(x);
+X = fft(x);
+L = N/2;                        
+f = (0:L-1) * (Fs / N);         
+Xmag = abs(X(1:L));           
+stem(f, Xmag, 'filled', 'Color', '#00FFFF', 'MarkerFaceColor', '#00FFFF');
+title('DFT Magnitudem of Multitone Sine Wave');
+xlabel('Frequency (Hz)');
+ylabel('Magnitude |X(k)|');
