@@ -1,0 +1,14 @@
+originalColorImage = imread('peppers.png');
+grayImage = rgb2gray(originalColorImage);
+constantValue = 40;
+brighterImage = imadd(grayImage, constantValue);
+darkerImage = imsubtract(grayImage, constantValue);
+subplot(1, 3, 1);
+imshow(grayImage);
+title('Original Image');
+subplot(1, 3, 2);
+imshow(brighterImage);
+title('Brighter');
+subplot(1, 3, 3);
+imshow(darkerImage);
+title('Darker');
