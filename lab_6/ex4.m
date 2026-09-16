@@ -1,0 +1,13 @@
+originalImage = imread('peppers.png');
+[origRows, origCols, ~] = size(originalImage);
+reducedImage = imresize(originalImage, 0.5);
+enlargedImage = imresize(originalImage, 2.0);
+subplot(1, 3, 1);
+imshow(originalImage);
+title('Original Image');
+subplot(1, 3, 2);
+imshow(reducedImage);
+title(sprintf('Reduced 0.5x (%dx%d)', size(reducedImage, 1), size(reducedImage, 2)));
+subplot(1, 3, 3);
+imshow(enlargedImage);
+title(sprintf('3. Enlarged 2x (%dx%d)', size(enlargedImage, 1), size(enlargedImage, 2)));
