@@ -1,0 +1,17 @@
+originalImage = imread('cameraman.tif');
+noisyImage = imnoise(originalImage, 'salt & pepper', 0.05);
+hMean = fspecial('average', [3 3]);
+meanFilteredImage = imfilter(noisyImage, hMean);
+medianFilteredImage = medfilt2(noisyImage, [3 3]);
+subplot(2, 2, 1);
+imshow(originalImage);
+title('Original Image');
+subplot(2, 2, 2);
+imshow(noisyImage);
+title('Noisy Image');
+subplot(2, 2, 3);
+imshow(meanFilteredImage);
+title('Mean Filtered');
+subplot(2, 2, 4);
+imshow(medianFilteredImage);
+title('Median Filtered');
